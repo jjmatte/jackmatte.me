@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2018",
+    "title": "Placeholder milestone",
+    "description": "Replace these with real, interesting moments from your life. Add, remove, or reorder entries by editing this file."
+  },
+  {
+    "date": "2020",
+    "title": "Another placeholder",
+    "description": "Each entry has a date, a title, and an optional short description."
+  },
+  {
+    "date": "2022",
+    "title": "Something worth noting",
+    "description": "Entries render left to right in the order they appear here."
+  },
+  {
+    "date": "2024",
+    "title": "A more recent moment",
+    "description": "Drag or scroll the timeline sideways to move through it."
+  }
+]

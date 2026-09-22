@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import Timeline from '../components/Timeline.astro';
+import RecentWriting from '../components/RecentWriting.astro';
 import { getFeatured } from '../lib/projects';
 
 const featured = getFeatured(await getCollection('projects'));
@@ -11,6 +13,15 @@ const featured = getFeatured(await getCollection('projects'));
   <h1>Jack Matte</h1>
   <p class="lede">Software engineer. I build clean, practical web software.</p>
   <SocialLinks />
+
+  <section class="about-row" aria-labelledby="about">
+    <div class="about-card">
+      <h2 id="about">About</h2>
+      <p class="about-intro">A timeline of things worth remembering. Drag or scroll to move through it.</p>
+      <Timeline />
+    </div>
+    <RecentWriting />
+  </section>
 
   <section aria-labelledby="featured">
     <h2 id="featured">Featured projects</h2>
@@ -21,4 +32,11 @@ const featured = getFeatured(await getCollection('projects'));
 <style>
   .lede { font-size: 1.25rem; color: var(--color-muted); }
   section { margin-top: var(--space-4); }
+  .about-row { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-3); align-items: start; }
+  .about-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-3); min-width: 0; }
+  .about-card h2 { margin-top: 0; }
+  .about-intro { margin: 0; color: var(--color-muted); font-size: 0.95rem; }
+  @media (max-width: 640px) {
+    .about-row { grid-template-columns: 1fr; }
+  }
 </style>

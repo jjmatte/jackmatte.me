@@ -4,8 +4,8 @@ test('nav links are present on the home page', async ({ page }) => {
   await page.goto('/');
   const nav = page.getByRole('navigation');
   await expect(nav.getByRole('link', { name: 'Projects' })).toHaveAttribute('href', '/projects');
-  await expect(nav.getByRole('link', { name: 'About' })).toHaveAttribute('href', '/about');
   await expect(nav.getByRole('link', { name: 'Writing' })).toHaveAttribute('href', '/blog');
+  await expect(nav.getByRole('link', { name: 'About' })).toHaveCount(0);
 });
 
 test('home has a skip link and a main landmark', async ({ page }) => {
