@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { title, description, tech } = project.data;
+---
+<article class="card">
+  <h3><a href={`/projects/${project.id}`}>{title}</a></h3>
+  <p>{description}</p>
+  <ul class="tech">{tech.map((t) => <li>{t}</li>)}</ul>
+</article>
+<style>
+  .card { border-top: 1px solid var(--color-border); padding-block: var(--space-3); }
+  .card h3 { margin: 0 0 var(--space-1); }
+  .tech { list-style: none; display: flex; gap: var(--space-1); padding: 0; margin: 0; flex-wrap: wrap; color: var(--color-muted); font-size: 0.9rem; }
+</style>

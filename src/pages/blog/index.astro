@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<BaseLayout title="Writing — Jack Matte" description="Notes and posts.">
+  <h1>Writing</h1>
+  <ul class="posts">
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        <time datetime={fmt(post.data.date)}>{fmt(post.data.date)}</time>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+<style>
+  .posts { list-style: none; padding: 0; }
+  .posts li { display: flex; justify-content: space-between; gap: var(--space-2); padding-block: var(--space-1); border-top: 1px solid var(--color-border); }
+  time { color: var(--color-muted); }
+</style>

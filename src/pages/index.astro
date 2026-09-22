@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { getFeatured } from '../lib/projects';
+
+const featured = getFeatured(await getCollection('projects'));
+---
+<BaseLayout title="Jack Matte">
+  <h1>Jack Matte</h1>
+  <p class="lede">Software engineer. I build clean, practical web software.</p>
+  <SocialLinks />
+
+  <section aria-labelledby="featured">
+    <h2 id="featured">Featured projects</h2>
+    {featured.map((project) => <ProjectCard project={project} />)}
+    <p><a href="/projects">All projects &rarr;</a></p>
+  </section>
+</BaseLayout>
+<style>
+  .lede { font-size: 1.25rem; color: var(--color-muted); }
+  section { margin-top: var(--space-4); }
+</style>

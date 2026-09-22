@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { sortByOrder } from '../../lib/projects';
+
+const projects = sortByOrder(await getCollection('projects'));
+---
+<BaseLayout title="Projects — Jack Matte" description="Things I've built.">
+  <h1>Projects</h1>
+  {projects.map((project) => <ProjectCard project={project} />)}
+</BaseLayout>

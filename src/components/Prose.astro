@@ -1,0 +1,7 @@
+<div class="prose"><slot /></div>
+<style>
+  .prose { max-width: var(--measure); }
+  .prose :global(h2) { margin-top: var(--space-4); }
+  .prose :global(p) { margin-block: var(--space-2); }
+  .prose :global(pre) { overflow-x: auto; padding: var(--space-2); border: 1px solid var(--color-border); border-radius: 6px; }
+</style>

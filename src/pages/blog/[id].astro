@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<BaseLayout title={`${post.data.title} — Jack Matte`} description={post.data.description}>
+  <h1>{post.data.title}</h1>
+  <p><time datetime={fmt(post.data.date)}>{fmt(post.data.date)}</time></p>
+  <Prose><Content /></Prose>
+</BaseLayout>

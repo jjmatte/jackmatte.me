@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Prose from '../../components/Prose.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, description, repo, demo, tech, screenshot } = project.data;
+---
+<BaseLayout title={`${title} — Jack Matte`} description={description}>
+  <h1>{title}</h1>
+  <p>{description}</p>
+  <ul class="tech">{tech.map((t) => <li>{t}</li>)}</ul>
+  <p>
+    {repo && <a href={repo}>Source</a>}
+    {demo && <> · <a href={demo}>Live demo</a></>}
+  </p>
+  {screenshot && <img class="screenshot" src={screenshot} alt={`${title} screenshot`} />}
+  <Prose><Content /></Prose>
+</BaseLayout>
+<style>
+  .tech { list-style: none; display: flex; gap: var(--space-1); padding: 0; margin: 0 0 var(--space-2); flex-wrap: wrap; color: var(--color-muted); }
+  .screenshot { max-width: 100%; height: auto; border: 1px solid var(--color-border); border-radius: 6px; margin-bottom: var(--space-2); }
+</style>

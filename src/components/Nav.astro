@@ -1,0 +1,27 @@
+---
+const path = Astro.url.pathname;
+const items = [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
+  { label: 'Writing', href: '/blog' },
+];
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+<nav aria-label="Primary">
+  <a class="brand" href="/">Jack Matte</a>
+  <ul>
+    {items.map((it) => (
+      <li>
+        <a href={it.href} aria-current={isActive(it.href) ? 'page' : undefined}>{it.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+<style>
+  nav { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2); padding-block: var(--space-3); flex-wrap: wrap; }
+  .brand { font-weight: 700; text-decoration: none; color: var(--color-fg); }
+  ul { list-style: none; display: flex; gap: var(--space-2); padding: 0; margin: 0; flex-wrap: wrap; }
+  a[aria-current='page'] { color: var(--color-fg); text-decoration: underline; }
+</style>
