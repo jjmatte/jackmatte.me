@@ -36,7 +36,7 @@ body {
   font-size: 1.0625rem;
 }
 
-a { color: var(--color-accent); }
+a { color: var(--color-fg); }
 
 :focus-visible {
   outline: 2px solid var(--color-accent);
