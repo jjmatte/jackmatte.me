@@ -7,7 +7,7 @@ const links = [
 ---
 <ul class="social">
   {links.map((l) => (
-    <li><a href={l.href} rel="me noopener">{l.label}</a></li>
+    <li><a href={l.href} target="_blank" rel="me noopener noreferrer">{l.label}</a></li>
   ))}
   <li class="email">
     <a href={`mailto:${email}`} rel="me">{email}</a>
