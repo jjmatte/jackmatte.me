@@ -10,9 +10,10 @@ test('home shows intro and only featured projects', async ({ page }) => {
 test('home shows an About section with a timeline', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'About', level: 2 })).toBeVisible();
-  const track = page.locator('.timeline-track');
-  await expect(track).toBeVisible();
-  await expect(track.locator('li')).not.toHaveCount(0);
+  const axis = page.locator('.tl-axis');
+  await expect(axis).toBeVisible();
+  await expect(axis.locator('.tl-tick')).not.toHaveCount(0);
+  await expect(page.locator('.tl-message')).toBeVisible();
 });
 
 test('home shows recent writing with an all-writing link', async ({ page }) => {
