@@ -9,7 +9,7 @@ test('email copy button copies the address and shows feedback', async ({ page, c
 
   const copy = page.getByRole('button', { name: /copy email address/i }).first();
   await copy.click();
-  await expect(copy).toHaveText('Copied!');
+  await expect(copy).toHaveAttribute('data-copied', 'true');
 
   const clipboard = await page.evaluate(() => navigator.clipboard.readText());
   expect(clipboard).toBe('joshuajmatte@gmail.com');
