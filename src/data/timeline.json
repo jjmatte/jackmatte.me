@@ -1,22 +1,52 @@
 [
   {
-    "date": "2018",
+    "date": "2014",
     "title": "Placeholder milestone",
     "description": "Replace these with real, interesting moments from your life. Add, remove, or reorder entries by editing this file."
   },
   {
-    "date": "2020",
+    "date": "2016",
     "title": "Another placeholder",
     "description": "Each entry has a date, a title, and an optional short description."
   },
   {
-    "date": "2022",
+    "date": "2018",
     "title": "Something worth noting",
     "description": "Entries render left to right in the order they appear here."
   },
   {
+    "date": "2019",
+    "title": "A step along the way",
+    "description": "Drag or scroll the timeline sideways to move through it."
+  },
+  {
+    "date": "2020",
+    "title": "A placeholder moment",
+    "description": "Swap in a real detail here when you're ready."
+  },
+  {
+    "date": "2021",
+    "title": "Yet another marker",
+    "description": "Keep entries in chronological order for the cleanest read."
+  },
+  {
+    "date": "2022",
+    "title": "A midpoint milestone",
+    "description": "Short descriptions read best — a sentence or two."
+  },
+  {
+    "date": "2023",
+    "title": "Something more recent",
+    "description": "This is placeholder copy waiting on the real story."
+  },
+  {
     "date": "2024",
     "title": "A more recent moment",
-    "description": "Drag or scroll the timeline sideways to move through it."
+    "description": "Replace with a real highlight from this year."
+  },
+  {
+    "date": "2025",
+    "title": "The latest placeholder",
+    "description": "The newest entry — update it with what's current."
   }
 ]
