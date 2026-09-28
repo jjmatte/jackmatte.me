@@ -44,7 +44,7 @@ const first = items[0];
 </div>
 <style>
   .timeline { margin-top: var(--space-2); display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: var(--space-3); user-select: none; -webkit-user-select: none; }
-  .tl-readout { min-height: 3.75rem; }
+  .tl-readout { min-height: 3.75rem; overflow: hidden; }
   .tl-message { margin: 0; }
   .tl-msg-year { color: var(--color-muted); font-variant-numeric: tabular-nums; margin-right: var(--space-1); }
   .tl-msg-title { font-weight: 700; }
@@ -91,28 +91,64 @@ const first = items[0];
     if (!track || !cursor || ticks.length === 0) return;
     tl.classList.add('is-enhanced');
 
-    let active = -1;
-    const setActive = (i: number) => {
-      if (i === active) return;
-      active = i;
-      ticks.forEach((t, j) => t.classList.toggle('is-active', j === i));
-      const t = ticks[i];
-      const minor = t.dataset.minor === 'true';
+    const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    let anim: Animation | null = null;
+
+    const applyReadout = (t: HTMLElement, minor: boolean) => {
       readout?.classList.toggle('is-minor', minor);
       if (minor) {
         if (msgYear) msgYear.textContent = '';
         if (msgTitle) msgTitle.textContent = t.dataset.desc ?? '';
         if (msgDesc) msgDesc.textContent = '';
-        if (cursorYear) cursorYear.textContent = '';
         track.setAttribute('aria-valuetext', t.dataset.desc ?? '');
       } else {
         if (msgYear) msgYear.textContent = t.dataset.year ?? '';
         if (msgTitle) msgTitle.textContent = t.dataset.title ?? '';
         if (msgDesc) msgDesc.textContent = t.dataset.desc ?? '';
-        if (cursorYear) cursorYear.textContent = t.dataset.year ?? '';
         track.setAttribute('aria-valuetext', `${t.dataset.year ?? ''} ${t.dataset.title ?? ''}`.trim());
       }
+    };
+
+    let active = -1;
+    const setActive = (i: number) => {
+      if (i === active) return;
+      const prev = active;
+      active = i;
+      ticks.forEach((t, j) => t.classList.toggle('is-active', j === i));
+      const t = ticks[i];
+      const minor = t.dataset.minor === 'true';
       track.setAttribute('aria-valuenow', String(i));
+      if (cursorYear) cursorYear.textContent = minor ? '' : (t.dataset.year ?? '');
+
+      if (prefersReduced || prev < 0 || !readout || typeof readout.animate !== 'function') {
+        applyReadout(t, minor);
+        return;
+      }
+
+      const el = readout;
+      const dir = i > prev ? 1 : -1;
+      const dist = 10;
+      anim?.cancel();
+      const out = el.animate(
+        [
+          { opacity: 1, transform: 'translateX(0)' },
+          { opacity: 0, transform: `translateX(${dir * dist}px)` },
+        ],
+        { duration: 120, easing: 'ease-in', fill: 'forwards' }
+      );
+      anim = out;
+      out.onfinish = () => {
+        applyReadout(t, minor);
+        const enter = el.animate(
+          [
+            { opacity: 0, transform: `translateX(${-dir * dist}px)` },
+            { opacity: 1, transform: 'translateX(0)' },
+          ],
+          { duration: 150, easing: 'ease-out' }
+        );
+        out.cancel();
+        anim = enter;
+      };
     };
 
     const tickX = (t: HTMLElement) => {
