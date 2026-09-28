@@ -1,5 +1,20 @@
 [
   {
+    "date": "1989",
+    "title": "Born",
+    "description": "Thanks to online calendars learned it was on a Monday."
+  },
+  {
+    "date": "1992",
+    "minor": true,
+    "description": "Moved to Fort McMurray, Alberta."
+  },
+  {
+    "date": "1995",
+    "title": "First Day of School",
+    "description": "I did not attend kindergarten so my first day was in grade 1."
+  },
+  {
     "date": "2014",
     "title": "Placeholder milestone",
     "description": "Replace these with real, interesting moments from your life. Add, remove, or reorder entries by editing this file."

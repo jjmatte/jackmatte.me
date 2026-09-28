@@ -3,8 +3,9 @@ import timelineData from '../data/timeline.json';
 
 interface TimelineItem {
   date: string;
-  title: string;
+  title?: string;
   description?: string;
+  minor?: boolean;
 }
 
 const items = timelineData as TimelineItem[];
@@ -27,11 +28,12 @@ const first = items[0];
     <ol class="tl-axis">
       {items.map((item, i) => (
         <li
-          class="tl-tick"
+          class:list={['tl-tick', item.minor && 'is-minor']}
           data-index={i}
           data-year={item.date}
-          data-title={item.title}
+          data-title={item.title ?? ''}
           data-desc={item.description ?? ''}
+          data-minor={item.minor ? 'true' : 'false'}
         >
           <span class:list={['tl-line', i % 2 === 0 ? 'is-long' : 'is-short']}></span>
         </li>
@@ -67,6 +69,8 @@ const first = items[0];
   .tl-line.is-long { height: 1.7rem; }
   .tl-line.is-short { height: 1.1rem; }
   .tl-tick.is-active .tl-line { background: var(--color-fg); width: 3px; }
+  .tl-tick.is-minor .tl-line { height: 0.7rem; }
+  .tl-readout.is-minor .tl-msg-title { font-weight: 400; }
 
   .tl-cursor { position: absolute; left: 50%; top: 1.45rem; bottom: 0; width: 2px; transform: translateX(-50%); background: #fff; pointer-events: none; z-index: 1; }
   .tl-cursor::before { content: ''; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: var(--color-pin); }
@@ -80,6 +84,7 @@ const first = items[0];
     const cursor = tl.querySelector<HTMLElement>('.tl-cursor');
     const cursorYear = tl.querySelector<HTMLElement>('.tl-cursor-year');
     const ticks = Array.from(tl.querySelectorAll<HTMLElement>('.tl-tick'));
+    const readout = tl.querySelector<HTMLElement>('.tl-readout');
     const msgYear = tl.querySelector<HTMLElement>('.tl-msg-year');
     const msgTitle = tl.querySelector<HTMLElement>('.tl-msg-title');
     const msgDesc = tl.querySelector<HTMLElement>('.tl-msg-desc');
@@ -92,12 +97,22 @@ const first = items[0];
       active = i;
       ticks.forEach((t, j) => t.classList.toggle('is-active', j === i));
       const t = ticks[i];
-      if (msgYear) msgYear.textContent = t.dataset.year ?? '';
-      if (msgTitle) msgTitle.textContent = t.dataset.title ?? '';
-      if (msgDesc) msgDesc.textContent = t.dataset.desc ?? '';
-      if (cursorYear) cursorYear.textContent = t.dataset.year ?? '';
+      const minor = t.dataset.minor === 'true';
+      readout?.classList.toggle('is-minor', minor);
+      if (minor) {
+        if (msgYear) msgYear.textContent = '';
+        if (msgTitle) msgTitle.textContent = t.dataset.desc ?? '';
+        if (msgDesc) msgDesc.textContent = '';
+        if (cursorYear) cursorYear.textContent = '';
+        track.setAttribute('aria-valuetext', t.dataset.desc ?? '');
+      } else {
+        if (msgYear) msgYear.textContent = t.dataset.year ?? '';
+        if (msgTitle) msgTitle.textContent = t.dataset.title ?? '';
+        if (msgDesc) msgDesc.textContent = t.dataset.desc ?? '';
+        if (cursorYear) cursorYear.textContent = t.dataset.year ?? '';
+        track.setAttribute('aria-valuetext', `${t.dataset.year ?? ''} ${t.dataset.title ?? ''}`.trim());
+      }
       track.setAttribute('aria-valuenow', String(i));
-      track.setAttribute('aria-valuetext', `${t.dataset.year ?? ''} ${t.dataset.title ?? ''}`.trim());
     };
 
     const tickX = (t: HTMLElement) => {
