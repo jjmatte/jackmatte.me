@@ -1,13 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-test('blog index lists the placeholder post', async ({ page }) => {
+test('blog index renders and hides drafts', async ({ page }) => {
   await page.goto('/blog');
   await expect(page.getByRole('heading', { name: 'Writing', level: 1 })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Hello World' })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Thoughts on Becoming a Coder in an LLM World' })
+  ).toHaveCount(0);
 });
 
-test('blog post renders its body', async ({ page }) => {
-  await page.goto('/blog/hello-world');
-  await expect(page.getByRole('heading', { name: 'Hello World', level: 1 })).toBeVisible();
-  await expect(page.getByText('This is a placeholder post')).toBeVisible();
+test('blog post renders its title and body', async ({ page }) => {
+  await page.goto('/blog/becoming-a-coder-in-an-llm-world');
+  await expect(
+    page.getByRole('heading', { name: 'Thoughts on Becoming a Coder in an LLM World', level: 1 })
+  ).toBeVisible();
+  await expect(page.getByText('The first time I used an LLM')).toBeVisible();
 });
