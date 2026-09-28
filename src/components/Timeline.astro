@@ -35,7 +35,7 @@ const first = items[0];
           data-desc={item.description ?? ''}
           data-minor={item.minor ? 'true' : 'false'}
         >
-          <span class:list={['tl-line', i % 2 === 0 ? 'is-long' : 'is-short']}></span>
+          <span class="tl-line"></span>
         </li>
       ))}
     </ol>
@@ -65,12 +65,11 @@ const first = items[0];
   }
 
   .tl-tick { display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
-  .tl-line { width: 2px; background: var(--color-border); }
-  .tl-line.is-long { height: 1.7rem; }
-  .tl-line.is-short { height: 1.1rem; }
+  .tl-line { width: 2px; height: 1.1rem; background: var(--color-border); }
   .tl-tick.is-active .tl-line { background: var(--color-fg); width: 3px; }
   .tl-tick.is-minor .tl-line { height: 0.7rem; }
-  .tl-readout.is-minor .tl-msg-title { font-weight: 400; }
+  .tl-readout.is-minor .tl-msg-year { display: none; }
+  .tl-readout.is-minor .tl-msg-title { font-weight: 400; font-size: 0.9rem; color: var(--color-muted); }
 
   .tl-cursor { position: absolute; left: 50%; top: 1.45rem; bottom: 0; width: 2px; transform: translateX(-50%); background: #fff; pointer-events: none; z-index: 1; }
   .tl-cursor::before { content: ''; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: var(--color-pin); }
@@ -118,7 +117,7 @@ const first = items[0];
       const t = ticks[i];
       const minor = t.dataset.minor === 'true';
       track.setAttribute('aria-valuenow', String(i));
-      if (cursorYear) cursorYear.textContent = minor ? '' : (t.dataset.year ?? '');
+      if (cursorYear) cursorYear.textContent = t.dataset.year ?? '';
 
       if (prefersReduced || prev < 0 || !readout || typeof readout.animate !== 'function') {
         applyReadout(t, minor);

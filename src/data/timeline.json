@@ -15,53 +15,38 @@
     "description": "I did not attend kindergarten so my first day was in grade 1."
   },
   {
-    "date": "2014",
-    "title": "Placeholder milestone",
-    "description": "Replace these with real, interesting moments from your life. Add, remove, or reorder entries by editing this file."
+    "date": "1996",
+    "minor": true,
+    "description": "First console is an NES which starts my lifelong love of video games."
   },
   {
-    "date": "2016",
-    "title": "Another placeholder",
-    "description": "Each entry has a date, a title, and an optional short description."
+    "date": "1997",
+    "minor": true,
+    "description": "Oilers finally win their first series in 5 years."
   },
   {
-    "date": "2018",
-    "title": "Something worth noting",
-    "description": "Entries render left to right in the order they appear here."
+    "date": "2007",
+    "title": "High School Graduation",
+    "description": "Due to some work experience and completing courses at home graduate 6 months early."
   },
   {
-    "date": "2019",
-    "title": "A step along the way",
-    "description": "Drag or scroll the timeline sideways to move through it."
+    "date": "2008",
+    "minor": true,
+    "description": "Joined Canadian Armed Forces."
   },
   {
-    "date": "2020",
-    "title": "A placeholder moment",
-    "description": "Swap in a real detail here when you're ready."
+    "date": "2009",
+    "minor": true,
+    "description": "Moved to Edmonton, Alberta."
   },
   {
-    "date": "2021",
-    "title": "Yet another marker",
-    "description": "Keep entries in chronological order for the cleanest read."
+    "date": "2010",
+    "title": "My Daughter is Born",
+    "description": "I became a dad to my beautiful daughter!"
   },
   {
-    "date": "2022",
-    "title": "A midpoint milestone",
-    "description": "Short descriptions read best — a sentence or two."
-  },
-  {
-    "date": "2023",
-    "title": "Something more recent",
-    "description": "This is placeholder copy waiting on the real story."
-  },
-  {
-    "date": "2024",
-    "title": "A more recent moment",
-    "description": "Replace with a real highlight from this year."
-  },
-  {
-    "date": "2025",
-    "title": "The latest placeholder",
-    "description": "The newest entry — update it with what's current."
+    "date": "2011",
+    "minor": true,
+    "description": "Started working in the trades."
   }
 ]
