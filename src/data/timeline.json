@@ -48,5 +48,50 @@
     "date": "2011",
     "minor": true,
     "description": "Started working in the trades."
+  },
+  {
+    "date": "2013",
+    "minor": true,
+    "description": "Became an Electrical Apprentice."
+  },
+  {
+    "date": "2016",
+    "minor": true,
+    "description": "Moved to Calgary, Alberta."
+  },
+  {
+    "date": "2018",
+    "title": "Electrician Unlocked!",
+    "description": "I achieved Journeyman status as an Electrician."
+  },
+  {
+    "date": "2019",
+    "title": "Engaged!",
+    "description": "I asked my wife to marry me... She said yes!"
+  },
+  {
+    "date": "2020",
+    "minor": true,
+    "description": "Transition into home sales and out of the trades."
+  },
+  {
+    "date": "2021",
+    "title": "AMERICA",
+    "description": "Cross the border in February and become a legal Permanent Resident of the USA. Moved to Dallas/Fort Worth."
+  },
+  {
+    "date": "2022",
+    "minor": true,
+    "description": "Working as a Realtor in DFW area."
+  },
+  {
+    "date": "2023",
+    "title": "Dream Career Engaged",
+    "description": "Start working for Bloomfield Homes as a Help Desk Technician."
+  },
+  {
+    "date": "2024",
+    "title": "Promotion",
+    "description": "Agree to become a Junior Software Developer for Bloomfield."
   }
 ]
