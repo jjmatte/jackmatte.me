@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, description, repo, demo, tech, screenshot } = project.data;
+const { title, description, repo, demo, tech, screenshot, clip } = project.data;
 ---
 <BaseLayout title={`${title} — Jack Matte`} description={description}>
   <h1>{title}</h1>
@@ -20,10 +20,26 @@ const { title, description, repo, demo, tech, screenshot } = project.data;
     {repo && <a href={repo}>Source</a>}
     {demo && <> · <a href={demo}>Live demo</a></>}
   </p>
-  {screenshot && <img class="screenshot" src={screenshot} alt={`${title} screenshot`} />}
+  {clip ? (
+    <video class="clip" data-project-clip loop muted playsinline preload="metadata" poster={screenshot}>
+      <source src={clip} type="video/mp4" />
+    </video>
+  ) : screenshot ? (
+    <img class="screenshot" src={screenshot} alt={`${title} screenshot`} />
+  ) : null}
   <Prose><Content /></Prose>
 </BaseLayout>
+<script>
+  // Autoplay project clips, but respect reduced-motion (they show the poster still).
+  const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+  if (!reduce) {
+    for (const v of document.querySelectorAll('video[data-project-clip]')) {
+      (v as HTMLVideoElement).play?.().catch(() => {});
+    }
+  }
+</script>
 <style>
   .tech { list-style: none; display: flex; gap: var(--space-1); padding: 0; margin: 0 0 var(--space-2); flex-wrap: wrap; color: var(--color-muted); }
-  .screenshot { max-width: 100%; height: auto; border: 1px solid var(--color-border); border-radius: 6px; margin-bottom: var(--space-2); }
+  .screenshot, .clip { max-width: 100%; height: auto; border: 1px solid var(--color-border); border-radius: 6px; margin-bottom: var(--space-2); }
+  .clip { display: block; }
 </style>

@@ -3,6 +3,7 @@ title: "Example Project Alpha"
 description: "Placeholder project — replace with a real one."
 tech: ["Astro", "TypeScript"]
 repo: "https://github.com/jackmatte/example-alpha"
+clip: "/clips/example-alpha.mp4"
 featured: true
 order: 1
 ---
