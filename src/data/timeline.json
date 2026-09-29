@@ -65,11 +65,6 @@
     "description": "I achieved Journeyman status as an Electrician."
   },
   {
-    "date": "2019",
-    "title": "Engaged!",
-    "description": "I asked my wife to marry me... She said yes!"
-  },
-  {
     "date": "2020",
     "minor": true,
     "description": "Transition into home sales and out of the trades."
@@ -93,5 +88,10 @@
     "date": "2024",
     "title": "Promotion",
     "description": "Agree to become a Junior Software Developer for Bloomfield."
+  },
+  {
+    "date": "2024",
+    "title": "My Son is Born",
+    "description": "Dad again, this time to a little mini me!"
   }
 ]
