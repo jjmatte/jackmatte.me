@@ -2,6 +2,7 @@
 title: "Lots"
 description: "A production platform that replaced a legacy Microsoft Access database, giving a homebuilder's teams one place to manage lot data, documents, and approvals."
 tech: ["React 19", "TypeScript", "Vite", "TanStack Query", "Prisma", "Azure SQL"]
+clip: "/clips/lots.mp4"
 featured: true
 order: 0
 ---
