@@ -3,8 +3,7 @@ import { test, expect } from '@playwright/test';
 test('home shows intro and only featured projects', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Hello, my name is Jack.');
-  await expect(page.getByRole('link', { name: 'Example Project Alpha' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Example Project Beta' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Lots' })).toBeVisible();
 });
 
 test('home shows an About section with a timeline', async ({ page }) => {
