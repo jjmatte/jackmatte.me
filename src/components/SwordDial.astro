@@ -1,0 +1,66 @@
+---
+// Easter egg: a small sword mounted on a pivot dot at the very bottom of the page.
+// It rotates to the cursor's bearing from the center of the viewport.
+---
+<div class="sword-dial" aria-hidden="true">
+  <svg class="sword" viewBox="0 0 40 40" width="40" height="40">
+    <!-- blade (points up at 0deg) -->
+    <polygon points="20,5 18.3,20 21.7,20" />
+    <!-- crossguard -->
+    <rect x="12.5" y="19" width="15" height="2" rx="0.5" />
+    <!-- grip -->
+    <rect x="19" y="21" width="2" height="9" />
+    <!-- pommel -->
+    <circle cx="20" cy="31" r="2" />
+  </svg>
+  <span class="pivot"></span>
+</div>
+<style>
+  .sword-dial {
+    --sword-angle: 0deg;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 3rem auto 1.5rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  .sword {
+    position: absolute;
+    inset: 0;
+    color: #141414;
+    fill: currentColor;
+    transform: rotate(var(--sword-angle, 0deg));
+    transform-origin: 50% 50%;
+    transition: transform 120ms ease-out;
+  }
+  .pivot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: #141414;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sword { transition: none; }
+  }
+</style>
+<script>
+  const dial = document.querySelector<HTMLElement>('.sword-dial');
+  if (dial) {
+    let current = 0;
+    window.addEventListener('mousemove', (e) => {
+      const dx = e.clientX - window.innerWidth / 2;
+      const dy = e.clientY - window.innerHeight / 2;
+      const target = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
+      // Accumulate the shortest signed delta so the sword never spins the long way.
+      const delta = (((target - current) % 360) + 540) % 360 - 180;
+      current += delta;
+      dial.style.setProperty('--sword-angle', `${current}deg`);
+    });
+  }
+</script>

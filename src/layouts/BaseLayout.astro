@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import SwordDial from '../components/SwordDial.astro';
 
 interface Props { title: string; description?: string }
 const { title, description = 'Personal site of Jack Matte.' } = Astro.props;
@@ -30,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <slot />
       </main>
       <Footer />
+      <SwordDial />
     </div>
   </body>
 </html>
