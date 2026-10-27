@@ -21,6 +21,14 @@ test('the Lots clip renders as a looping muted video', async ({ page }) => {
   await expect(video).toHaveAttribute('playsinline', '');
 });
 
+test('project cards show a thumbnail that links to the detail page', async ({ page }) => {
+  await page.goto('/projects');
+  const thumb = page.locator('a.thumb').first();
+  await expect(thumb).toBeVisible();
+  await thumb.click();
+  await expect(page).toHaveURL(/\/projects\/[a-z]+$/);
+});
+
 test('the Net Worth Tracker project is listed and its detail renders a screenshot', async ({ page }) => {
   await page.goto('/projects');
   await expect(page.getByRole('link', { name: 'Net Worth Tracker' })).toBeVisible();

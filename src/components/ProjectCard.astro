@@ -2,15 +2,38 @@
 import type { CollectionEntry } from 'astro:content';
 interface Props { project: CollectionEntry<'projects'> }
 const { project } = Astro.props;
-const { title, description, tech } = project.data;
+const { title, description, tech, screenshot, clip } = project.data;
+const href = `/projects/${project.id}`;
 ---
 <article class="card">
-  <h3><a href={`/projects/${project.id}`}>{title}</a></h3>
+  {(screenshot || clip) && (
+    <a href={href} class="thumb" aria-hidden="true" tabindex="-1">
+      {screenshot ? (
+        <img src={screenshot} alt="" loading="lazy" decoding="async" />
+      ) : (
+        <video src={clip} muted loop playsinline preload="metadata" data-project-thumb></video>
+      )}
+    </a>
+  )}
+  <h3><a href={href}>{title}</a></h3>
   <p>{description}</p>
   <ul class="tech">{tech.map((t) => <li>{t}</li>)}</ul>
 </article>
 <style>
   .card { border-top: 1px solid var(--color-border); padding-block: var(--space-3); }
+  .thumb { display: block; margin: 0 0 var(--space-2); border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; aspect-ratio: 16 / 9; background: var(--color-surface); }
+  .thumb img, .thumb video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .thumb img { object-position: top center; }
+  .thumb video { object-position: center; }
   .card h3 { margin: 0 0 var(--space-1); }
   .tech { list-style: none; display: flex; gap: var(--space-1); padding: 0; margin: 0; flex-wrap: wrap; color: var(--color-muted); font-size: 0.9rem; }
 </style>
+<script>
+  // Autoplay card thumbnail clips (muted, looping) unless the viewer prefers reduced motion.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    for (const v of document.querySelectorAll<HTMLVideoElement>('video[data-project-thumb]')) {
+      v.play?.().catch(() => {});
+    }
+  }
+</script>
