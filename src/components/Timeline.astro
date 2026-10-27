@@ -43,14 +43,14 @@ const first = items[0];
   </div>
 </div>
 <style>
-  .timeline { margin-top: var(--space-2); display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: var(--space-3); user-select: none; -webkit-user-select: none; }
-  .tl-readout { min-height: 3.75rem; overflow: hidden; }
+  .timeline { margin-top: var(--space-2); display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: var(--space-2); user-select: none; -webkit-user-select: none; }
+  .tl-readout { min-height: 4rem; overflow: hidden; }
   .tl-message { margin: 0; }
   .tl-msg-year { color: var(--color-muted); font-variant-numeric: tabular-nums; margin-right: var(--space-1); }
   .tl-msg-title { font-weight: 700; }
   .tl-msg-desc { margin: 0.25rem 0 0; color: var(--color-muted); font-size: 0.9rem; }
 
-  .tl-track { position: relative; margin-top: auto; align-self: center; width: -moz-fit-content; width: fit-content; padding: 1.75rem var(--space-3) 0; touch-action: none; }
+  .tl-track { position: relative; align-self: center; width: -moz-fit-content; width: fit-content; padding: 1.5rem var(--space-3) 0; touch-action: none; }
   .tl-track:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; border-radius: 4px; }
   .timeline.is-enhanced .tl-track { cursor: pointer; }
   .timeline.is-enhanced .tl-track.dragging { cursor: grabbing; }
@@ -61,18 +61,18 @@ const first = items[0];
     padding: 0;
     display: flex;
     align-items: flex-end;
-    gap: var(--space-1);
+    gap: var(--space-2);
   }
 
   .tl-tick { display: flex; flex-direction: column; align-items: center; flex: 0 0 auto; }
-  .tl-line { width: 2px; height: 1.1rem; background: var(--color-muted); }
+  .tl-line { width: 2px; height: 1.7rem; background: var(--color-muted); }
   .tl-tick.is-active .tl-line { background: var(--color-fg); width: 3px; }
-  .tl-tick.is-minor .tl-line { height: 0.7rem; }
+  .tl-tick.is-minor .tl-line { height: 1.05rem; }
   .tl-readout.is-minor .tl-msg-year { display: none; }
   .tl-readout.is-minor .tl-msg-title { font-weight: 400; font-size: 0.9rem; color: var(--color-muted); }
 
   .tl-cursor { position: absolute; left: 50%; top: 1.45rem; bottom: 0; width: 2px; transform: translateX(-50%); background: #fff; pointer-events: none; z-index: 1; }
-  .tl-cursor::before { content: ''; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: var(--color-pin); }
+  .tl-cursor::before { content: ''; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; border-radius: 50%; background: var(--color-pin); }
   .tl-cursor-year { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 0.75rem; font-size: 0.8rem; font-weight: 700; color: var(--color-fg); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .timeline.is-enhanced .tl-cursor { transition: left 0.08s ease-out; }
   .tl-track.dragging .tl-cursor { transition: none; }
