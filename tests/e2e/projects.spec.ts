@@ -20,3 +20,13 @@ test('the Lots clip renders as a looping muted video', async ({ page }) => {
   await expect(video).toHaveAttribute('muted', '');
   await expect(video).toHaveAttribute('playsinline', '');
 });
+
+test('the Net Worth Tracker project is listed and its detail renders a screenshot', async ({ page }) => {
+  await page.goto('/projects');
+  await expect(page.getByRole('link', { name: 'Net Worth Tracker' })).toBeVisible();
+
+  await page.goto('/projects/networth');
+  await expect(page.getByRole('heading', { name: 'Net Worth Tracker', level: 1 })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Net Worth Tracker screenshot' })).toBeVisible();
+  await expect(page.locator('video[data-project-clip]')).toHaveCount(0);
+});
