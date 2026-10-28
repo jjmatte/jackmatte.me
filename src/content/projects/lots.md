@@ -10,9 +10,9 @@ order: 0
 ## Why I built this
 
 Bloomfield Homes ran years of lot and community data out of a Microsoft Access
-database that had outgrown itself. Lots is the web application that replaced it —
-a single hub where sales, construction, and purchasing work from the same source
-of truth instead of a fragile shared file.
+database that had outgrown itself. Lots is the web application that replaced it. It
+gives sales, construction, and purchasing a single hub where they work from the
+same source of truth instead of a fragile shared file.
 
 ## What it does
 
@@ -31,5 +31,5 @@ WebSockets, backed by Prisma against Azure SQL.
 
 ## My role
 
-I build features across the front end and API — data grids, forms, workflows, and
+I build features across the front end and API: data grids, forms, workflows, and
 the integrations that keep everything in sync.
