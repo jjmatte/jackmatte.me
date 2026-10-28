@@ -38,3 +38,17 @@ test('the Net Worth Tracker project is listed and its detail renders a screensho
   await expect(page.getByRole('img', { name: 'Net Worth Tracker screenshot' })).toBeVisible();
   await expect(page.locator('video[data-project-clip]')).toHaveCount(0);
 });
+
+test('the website project is listed and its detail links to the source repo', async ({ page }) => {
+  await page.goto('/projects');
+  await expect(page.getByRole('link', { name: 'This Website' })).toBeVisible();
+
+  await page.goto('/projects/website');
+  await expect(page.getByRole('heading', { name: 'This Website', level: 1 })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Source' }).first()
+  ).toHaveAttribute('href', 'https://github.com/jjmatte/jackmatte.me');
+  // No media for this entry.
+  await expect(page.locator('video[data-project-clip]')).toHaveCount(0);
+  await expect(page.locator('img.screenshot')).toHaveCount(0);
+});
