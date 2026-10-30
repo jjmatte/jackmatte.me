@@ -28,7 +28,7 @@ glance.
 
 SvelteKit 2 on Svelte 5 with its new runes, written in TypeScript. Data lives in
 SQLite through Drizzle ORM (better-sqlite3), accessed only on the server via load
-functions and form actions, with Zod validating every write. The interface is
+functions and form actions, with Zod validating every create and update. The interface is
 Tailwind CSS 4 using its CSS-first theming, and the charts are Chart.js. Pure
 financial math is isolated in its own module and unit-tested with Vitest;
 end-to-end flows are covered with Playwright.

@@ -1,6 +1,6 @@
 ---
 title: "This Website"
-description: "The portfolio site you're reading right now, a fast, static, zero-JavaScript site built from scratch and deployed on a custom domain."
+description: "The portfolio site you're reading right now, a fast, static, minimal-JavaScript site built from scratch and deployed on a custom domain."
 tech: ["Astro 5", "TypeScript", "Zod", "Vitest", "Playwright", "GitHub Pages"]
 repo: "https://github.com/jjmatte/jackmatte.me"
 demo: "https://jackmatte.me"
@@ -25,9 +25,10 @@ project is a single file. No CMS, no database, no build-time surprises.
 
 ## How it's built
 
-Astro 5 renders everything to static HTML with effectively zero client-side
-JavaScript. The handful of interactive touches (the timeline, a copy-to-clipboard
-button) are tiny progressive-enhancement scripts. Content lives in typed Zod
+Astro 5 renders everything to static HTML and ships almost no client-side
+JavaScript. A few small progressive-enhancement scripts power the interactive
+touches, like the timeline, the copy-to-clipboard button, and a cursor-following
+dial. Content lives in typed Zod
 content collections, so a malformed project or post fails the build instead of
 shipping. Styling is scoped CSS with design tokens and a light/dark theme, no UI
 framework. Unit tests run in Vitest and end-to-end flows in Playwright; CI builds

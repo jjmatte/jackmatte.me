@@ -1,7 +1,7 @@
 ---
 title: "Lots"
 description: "A production platform that replaced a legacy Microsoft Access database, giving a homebuilder's teams one place to manage lot data, documents, and approvals."
-tech: ["React 19", "TypeScript", "Vite", "TanStack Query", "Prisma", "Azure SQL"]
+tech: ["React 19", "TypeScript", "Vite", "TanStack Query", "Ruby on Rails", "Azure SQL"]
 clip: "/clips/lots.mp4"
 featured: true
 order: 0
@@ -27,7 +27,7 @@ React 19 and TypeScript on Vite, with Fluent UI and Tailwind for the interface.
 TanStack Query manages server state and TanStack Table (virtualized) renders large
 datasets smoothly; Zustand holds UI state. Forms use React Hook Form with Zod
 validation. The API layer mixes GraphQL and REST, with live updates over
-WebSockets, backed by Prisma against Azure SQL.
+WebSockets, backed by a Ruby on Rails API over Azure SQL.
 
 ## My role
 
